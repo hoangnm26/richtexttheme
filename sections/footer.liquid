@@ -1,0 +1,172 @@
+{% style %}
+footer {
+  width: 1170px;
+  margin: 0 auto;
+}
+
+.footer-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 0 30px;
+  margin-bottom: 50px;
+}
+
+.footer-top {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.footer-top-content {
+  width: 33%;
+}
+
+.footer-middle form {
+  display: flex;
+  flex-direction: row;
+  height: 30px;
+  align-items: stretch;
+}
+
+.footer-middle form input{
+  width: 30%;
+  text-indent: 10px;
+  border: 1px solid #666666;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+.footer-middle form button {
+  width: 150px;
+  border: 1px solid #666666;
+  background-color: #666666;
+  border-radius: 5px;
+  color: #ffffff;
+}
+
+.footer-bottom {
+  text-align: center;
+}
+{% endstyle %}
+
+<footer>
+  <div class="footer-wrapper">
+    <div class="footer-top">
+      {% for block in section.blocks %}
+        <div class="footer-top-content">
+          {% if block.settings.heading != blank %}
+            <h2>{{ block.settings.heading }}</h2>
+          {% endif %}
+
+          {% case block.type %}
+            {% when 'text' %}
+              <p>{{ block.settings.subtext }}</p>
+            {% when 'link_list' %}
+              {% if block.settings.menu != blank %}
+                <ul>
+                  {% for link in block.settings.menu.links %}
+                    <li>
+                      <a href="{{ link.url }}">{{ link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+          {% endcase %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="footer-middle">
+    </div>
+    <div class="footer-bottom">
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "section",
+  "class": "footer-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "background_color",
+      "label": "Background Color",
+      "info": "Change background color",
+      "options": [
+        {
+          "value": "red",
+          "label": "Red"
+        },
+        {
+          "value": "green",
+          "label": "Green"
+        },
+        {
+          "value": "blue",
+          "label": "Blue"
+        },
+        {
+          "value": "white",
+          "label": "White"
+        }
+      ],
+      "default": "white"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Footer Link List",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Quick Links",
+          "label": "Quick Links"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "default": "footer",
+          "label": "Footer",
+          "info": "Footer Information"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Footer Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading",
+          "default": "Heading",
+          "label": "Footer Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "subtext",
+          "default": "<p>Share contact information, store detail, and brand content with your customer.</p>",
+          "label": "Footer Subtext"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "name": "Footer",
+    "blocks": [
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "link_list"
+      },
+      {
+        "type": "text"
+      }
+    ]
+  }
+}
+{% endschema %}

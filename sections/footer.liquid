@@ -1,14 +1,14 @@
 {% style %}
 footer {
-  width: 1170px;
-  margin: 0 auto;
+  padding: 30px;
+  border-top: 1px solid #000000
+  
 }
 
 .footer-wrapper {
   display: flex;
   flex-direction: column;
   gap: 50px;
-  padding: 0 30px;
   margin-bottom: 50px;
 }
 
@@ -20,6 +20,14 @@ footer {
 
 .footer-top-content {
   width: 33%;
+}
+
+.footer-top-content ul {
+  padding-left: 0;
+}
+
+.footer-top-content li {
+  text-align: left;
 }
 
 .footer-middle form {
@@ -50,11 +58,11 @@ footer {
 }
 {% endstyle %}
 
-<footer>
+<footer style="background-color: {{ section.settings.background_color }}">
   <div class="footer-wrapper">
     <div class="footer-top">
       {% for block in section.blocks %}
-        <div class="footer-top-content">
+        <div class="footer-top-content" {{ block.shopify_attributes }}>
           {% if block.settings.heading != blank %}
             <h2>{{ block.settings.heading }}</h2>
           {% endif %}
@@ -77,8 +85,17 @@ footer {
       {% endfor %}
     </div>
     <div class="footer-middle">
+      <div class="subscribe-form">
+        <p>Subscribe to our emails</p>
+        <form>
+          <input type="text" name="email" placeholder="Email">
+          <button type="submit">Subscribes</button>
+        </form>
+      </div>
     </div>
     <div class="footer-bottom">
+
+      <small class="copyright-content">&copy; {{ 'now' | date: '%Y' }}, Design by Dale</small>
     </div>
   </div>
 </footer>
@@ -155,7 +172,6 @@ footer {
     }
   ],
   "default": {
-    "name": "Footer",
     "blocks": [
       {
         "type": "link_list"

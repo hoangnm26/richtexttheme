@@ -1,0 +1,28 @@
+.announcement-bar {
+  text-align: center;
+  padding: 50px 0;
+}
+
+.background-red {
+  background-color: red;
+}
+
+.background-green {
+  background-color: green;
+}
+
+.background-blue {
+  background-color: blue;
+}
+
+.background-white {
+  background-color: white;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-black {
+  color: black;
+}

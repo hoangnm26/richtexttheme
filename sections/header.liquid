@@ -1,38 +1,4 @@
-{% style %}
-  header {
-    padding: 0 30px;
-  }
-  
-  #logo {
-    display: inline-block;
-  }
-
-  .left-menu {
-    display: inline-block;
-  }
-
-  .right-menu {
-    float: right;
-  }
-
-  ul {
-    display: flex;
-    flex-direction: row;
-  }
-
-  li {
-    list-style-type: none;
-    width: 150px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-  }
-  a {
-    text-decoration: none;
-    display: block;
-    color: #000000;
-  }
-{% endstyle %}
+{{ 'header-section.css' | asset_url | stylesheet_tag }}
 
 <header style="background-color: {{ section.settings.background_color }}">
   <div id="header">

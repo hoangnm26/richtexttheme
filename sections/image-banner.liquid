@@ -1,4 +1,19 @@
-<div>Test Image Banner</div>
+{{ 'image-banner.css' | asset_url | stylesheet_tag }}
+
+<img loading="lazy" src="{{ section.settings.image | image_url }}" width=1500 height=1500>
+
+<div class="image-banner-content">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'heading' -%}
+        <h3 {{ block.shopify_attributes }}>{{ block.settings.heading_text }}</h3>
+      {%- when 'text' -%}
+        <p {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+      {%- when 'button' -%}
+        <button {{ block.shopify_attributes }}>{{ block.settings.button_label }}</button>
+    {%- endcase -%}
+  {%- endfor -%}
+</div>
 
 {% schema %}
 {
@@ -12,9 +27,58 @@
       "label": "Image Label"
     }
   ],
+  "blocks": [
+    {
+      "type": "heading",
+      "name": "Heading",
+      "settings": [
+        {
+          "type": "text",
+          "id": "heading_text",
+          "default": "Image Banner",
+          "label": "Image Banner"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Give customers details about the banner image(s) or content on the template."
+        }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Button Text",
+          "default": "Shop All"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Image"
+      "name": "Image Banner",
+      "blocks": [
+        {
+          "type": "heading"
+        },
+        {
+          "type": "text"
+        },
+        {
+          "type": "button"
+        }
+      ]
     }
   ]
 }

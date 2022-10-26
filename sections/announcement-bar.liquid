@@ -1,0 +1,79 @@
+{{ 'announcement-bar.css' | asset_url | stylesheet_tag }}
+
+{%- for block in section.blocks -%}
+  {%- case block.type %}
+    {%- when 'announcement' -%}
+      {%- if block.settings.announcement_text != blank -%}
+        <div class="announcement-bar background-{{ block.settings.background_color }} text-{{ block.settings.text_color}}" {{ block.shopify_attributes }}>
+          {{ block.settings.announcement_text | escape }}
+        </div>
+      {%- endif -%}
+  {%- endcase -%}
+{%- endfor -%}
+
+{%- schema -%}
+{
+  "name": "Announcement Bar",
+  "blocks": [
+    {
+      "type": "announcement",
+      "name": "Announcement",
+      "settings": [
+        {
+          "type": "text",
+          "id": "announcement_text",
+          "label": "Text",
+          "default": "Welcome to Store"
+        },
+        {
+          "type": "select",
+          "id": "background_color",
+          "label": "Background Color",
+          "options": [
+            {
+              "value": "red",
+              "label": "Red"
+            },
+            {
+              "value": "green",
+              "label": "Green"
+            },
+            {
+              "value": "blue",
+              "label": "Blue"
+            },
+            {
+              "value": "white",
+              "label": "White"
+            }
+          ],
+          "default": "white"
+        },
+        {
+          "type": "select",
+          "id": "text_color",
+          "label": "Text Color",
+          "options": [
+            {
+              "value": "white",
+              "label": "White"
+            },
+            {
+              "value": "black",
+              "label": "Black"
+            }
+          ],
+          "default": "black"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      {
+        "type": "announcement"
+      }
+    ]
+  }
+}
+{% endschema %}

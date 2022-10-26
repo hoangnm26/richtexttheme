@@ -3,11 +3,11 @@
 {% for block in section.blocks %}
   {% case block.type %}
     {% when 'heading' %}
-      <div {{ block.shopify_attributes }}>{{ block.settings.heading }}</div>
+      <div>{{ block.settings.heading }}</div>
     {% when 'text' %}
-      <div  {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+      <div>{{ block.settings.text }}</div>
     {% when 'button' %}
-      <div  {{ block.shopify_attributes }}><button>{{ block.settings.button_label }}</button></div>
+      <div><button>{{ block.settings.button_label }}</button></div>
   {% endcase %}
 {% endfor %}
 

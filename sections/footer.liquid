@@ -1,7 +1,8 @@
 {% style %}
 footer {
-  padding: 0 30px;
+  padding: 30px;
   border-top: 1px solid #000000
+  
 }
 
 .footer-wrapper {
@@ -23,6 +24,10 @@ footer {
 
 .footer-top-content ul {
   padding-left: 0;
+}
+
+.footer-top-content li {
+  text-align: left;
 }
 
 .footer-middle form {
@@ -53,7 +58,7 @@ footer {
 }
 {% endstyle %}
 
-<footer>
+<footer style="background-color: {{ section.settings.background_color }}">
   <div class="footer-wrapper">
     <div class="footer-top">
       {% for block in section.blocks %}
@@ -80,8 +85,16 @@ footer {
       {% endfor %}
     </div>
     <div class="footer-middle">
+      <div class="subscribe-form">
+        <p>Subscribe to our emails</p>
+        <form>
+          <input type="text" name="email" placeholder="Email">
+          <button type="submit">Subscribes</button>
+        </form>
+      </div>
     </div>
     <div class="footer-bottom">
+
       <small class="copyright-content">&copy; {{ 'now' | date: '%Y' }}, Design by Dale</small>
     </div>
   </div>

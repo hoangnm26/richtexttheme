@@ -1,0 +1,70 @@
+{{ 'multicolumn.css' | asset_url | stylesheet_tag }}
+
+      <div class="multicolumn-heading">
+        <h3>{{ section.settings.heading }}</h3>
+      </div>
+
+
+<div class="multicolumn-wrapper">
+  {%- for block in section.blocks -%}
+    <div class="multicolumn-content" {{ block.shopify_attributes }}>
+      {%- case block.type -%}
+        {%- when 'column' -%}
+          <h4>{{ block.settings.column_heading }}</h4>
+          {{ block.settings.column_text }}
+      {%- endcase -%}
+    </div>
+  {%- endfor -%}
+</div>
+
+{% schema %}
+{
+  "name": "Multicolumn",
+  "tag": "section",
+  "class": "Multicolumn",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "default": "Block Heading",
+      "label": "Heading Text"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Block Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "column_heading",
+          "default": "Column Heading",
+          "label": "Column Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "column_text",
+          "default": "<p>Pair text with an image to focus on your chosen product, collection, or blog post. Add details on availability, style, or even provide a review.</p>",
+          "label": "Column Text"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Column",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

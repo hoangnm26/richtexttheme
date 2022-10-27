@@ -1,12 +1,24 @@
 {{ 'image-banner.css' | asset_url | stylesheet_tag }}
+{%- style -%}
+.image-banner-content {
+  background: url({{ section.settings.image | image_url : width : section.settings.image.width }});
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.image-banner-content h3 {
+  color: {{}};
+}
+
+{%- endstyle -%}
 
 <div class="image-banner-content">
   {%- for block in section.blocks -%}
     {%- case block.type -%}
       {%- when 'heading' -%}
-        <h3 {{ block.shopify_attributes }}>{{ block.settings.heading_text }}</h3>
+        <h3 {{ block.shopify_attributes }} style="color: {{ block.settings.heading_text_color }}">{{ block.settings.heading_text }}</h3>
       {%- when 'text' -%}
-        <p {{ block.shopify_attributes }}>{{ block.settings.text }}</p>
+        <p {{ block.shopify_attributes }} style="color: {{ block.settings.text_color }}">{{ block.settings.text }}</p>
       {%- when 'button' -%}
         <button {{ block.shopify_attributes }}>{{ block.settings.button_label }}</button>
     {%- endcase -%}
@@ -35,6 +47,21 @@
           "id": "heading_text",
           "default": "Image Banner",
           "label": "Image Banner"
+        },
+        {
+          "type": "select",
+          "id": "heading_text_color",
+          "label": "Change heading text color",
+          "options": [
+            {
+              "value": "black",
+              "label": "Black"
+            },
+            {
+              "value": "white",
+              "label": "White"
+            }
+          ]
         }
       ]
     },
@@ -47,6 +74,21 @@
           "id": "text",
           "label": "Text",
           "default": "Give customers details about the banner image(s) or content on the template."
+        },
+        {
+          "type": "select",
+          "id": "text_color",
+          "label": "Change text color",
+          "options": [
+            {
+              "value": "black",
+              "label": "Black"
+            },
+            {
+              "value": "white",
+              "label": "White"
+            }
+          ]
         }
       ]
     },

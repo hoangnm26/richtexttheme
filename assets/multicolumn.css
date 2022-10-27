@@ -1,0 +1,16 @@
+.multicolumn-heading {
+  padding: 30px;
+
+}
+
+.multicolumn-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 5px;
+  padding: 30px;
+}
+
+.multicolumn-content {
+  width: 33%;
+}

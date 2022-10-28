@@ -1,9 +1,7 @@
 {
   "sections": {
     "main": {
-      "type": "main-collection-grid",
-      "settings": {
-      }
+      "type": "main-collection-grid"
     }
   },
   "order": [

@@ -1,1 +1,19 @@
-<div>{{ settings.title }}</div>
+<div>{{ section.settings.menu.links }}</div>
+{% for link in section.settings.menu.links %}
+  <p>{{ link.url }}</p>
+{% endfor %}
+
+{% schema %}
+{
+  "name": "Search Section",
+  "class": "search-section",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Link List",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}

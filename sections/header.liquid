@@ -2,18 +2,19 @@
 
 <header style="background-color: {{ section.settings.background_color }}">
   <div id="header">
-    <div id="logo"><a href="#">Dale26</a></div>
+    <div id="logo"><a href="/">Dale26</a></div>
     <div class="left-menu">
       <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/catalog">Catalog</a></li>
-        <li><a href="/contact1">Contact</a></li>
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}" alt="{{ link.title }}">{{ link.title }}</a>
+        {%- endfor -%}
       </ul>
     </div>
     <div class="right-menu">
       <ul>
-        <li><a href="/search">Search</a></li>
-        <li><a href="/addtocart">Add to cart</a></li>
+        {%- for link in section.settings.menu2.links -%}
+          <li><a href="{{ link.url }}" alt="{{ link.title }}">{{ link.title }}</a></li>
+        {%- endfor -%}
       </ul>
     </div>
   </div>
@@ -25,6 +26,18 @@
   "tag": "section",
   "class": "header-section",
   "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Link List",
+      "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu2",
+      "label": "Link List 2",
+      "default": "footer"
+    },
     {
       "type": "select",
       "id": "background_color",

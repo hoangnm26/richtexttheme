@@ -69,7 +69,9 @@
         document.documentElement.classList.add('shopify-design-mode');
       }
       </script>
-    </head>
+    
+ {% render "reviews-importer-variable-js" %}
+</head>
   
     <body class="gradient">
       {% section 'announcement-bar' %}
@@ -79,6 +81,8 @@
       </main>
       {% section 'footer' %}
   
-    </body>
+    
+ {% render "reviews-importer-popup" %}
+</body>
   </html>
   
